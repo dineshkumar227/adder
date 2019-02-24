@@ -7,3 +7,5 @@ email: dkr2@illinois.edu
 email: cmahesh2@illinois.edu
 * Transpiler
 * Converting intermediate code to valid lean code
+
+# Mentor: Ish Shah
