@@ -12,7 +12,7 @@ Input a proof in plain English in the web interface, and recieve immediate feedb
 # Technical Details
   * Grades set theory based proofs
   * Automatically identifies variables, sets, claims and assumptions in a proof
-  * Transpiles using NLP techniques to Lean, a programming language meant for proof checking using NLP techniques 
+  * Transpiles using NLP techniques to Lean, a programming language meant for proof checking 
 
 ## USAGE
   * Simply type your formatted proof into the box and hit submit to get your proof checked!
