@@ -4,9 +4,9 @@ def extract_statement(sentence):
 def extract_have(sentence):
 	return " ".join(sentence.split()[:len(sentence.split())-3])
 
-def get_reason(statement, proof):
-	print("statement " + statement)
-	print("proof " + proof)
+def get_reason(statement, proof, variable):
+	#print("statement " + statement)
+	#print("proof " + proof)
 	
 	ret = ""
 
@@ -32,36 +32,57 @@ def get_reason(statement, proof):
 			break
 		countback += 1
 
-	print("count " + str(count))
-	print("count back" + str(countback))
+	#print("count " + str(count))
+	#print("count back" + str(countback))
 	
 	if count != len(proof) - 1:
 		prev  = proof[:count+1]
-		print(" op is and")
-		print("prev is " + prev)
+		#print(" op is and")
+		#print("prev is " + prev)
 		after = proof[count+3:]
-		print("next is " + after)
+		#print("next is " + after)
 
-		ret += "and."
-		if statement == prev:
-			ret += "left "
+		op = proof[count+2]
+
+		if op == "∪":
+			#print("op is or")
+			ret += "or."
+			if statement == prev:
+				ret += "inr "
+			else:
+				ret += "inl "
+			ret += "this"
 		else:
-			ret += "right "
+			#print("op is and")
+			ret += "and."
+			if statement == prev:
+				ret += "left "
+			else:
+				ret += "right "
+			ret += "this"
 
 	else:
 		prev  = statement[:countback+1]
-		print(" op is or")
-		print("prev is " + prev)
+		#print("prev is " + prev)
 		after = statement[countback+3:]
-		print("next is " + after)
+		#print("next is " + after)
 
-		ret += "or."
-		if statement == prev:
-			ret += "inr "
+		op = statement[countback+2]
+
+		if op == "∪":
+			#print("op is or")
+			ret += "or."
+			if statement == prev:
+				ret += "inr "
+			else:
+				ret += "inl "
+			ret += "this"
 		else:
-			ret += "inl "
+			#print("op is and")
+			ret += "and.intro "
+			ret += "‹" + variable + " ∈ " + prev  +  "› "
+			ret += "‹" + variable + " ∈ " + after +  "› "
 
-	ret += "this"
 
 	return ret
 	
@@ -126,7 +147,7 @@ def parse(question, sets, variables, assumptions, statements):
 		else:
 			proof = extract_statement(full_proof[index_full_proof])
 
-		reason = get_reason(extract_statement(i), proof)
+		reason = get_reason(extract_statement(i), proof, tokens[0])
 		if j != len(statements) - 1:
 			code.append("  have " + extract_have(i) + ", from " + reason + ", ")
 		else:
@@ -134,23 +155,3 @@ def parse(question, sets, variables, assumptions, statements):
 
 
 	return code
-
-parsed_code = parse('∀ x, x ∈ A ∩ C → x ∈ A ∪ C', ['A', 'B', 'C'], ['x'], ['x ∈ (A) ∩ (C)'] , ['x ∈ (A) from assumption 1', 'x ∈ (A) ∪ (C) from statement 1'])
-
-print()
-print("===================Proof===================")
-print()
-
-for i in parsed_code:
-	print(i)
-
-
-
-parsed_code = parse('∀ x, x ∈ A ∩ C → x ∈ A', ['A', 'B', 'C'], ['x'], ['x ∈ (A) ∩ (C)'] , ['x ∈ (A) from assumption 1'])
-
-print()
-print("===================Proof===================")
-print()
-
-for i in parsed_code:
-	print(i)
