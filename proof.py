@@ -10,7 +10,7 @@ def proof_form():
 @app.route('/', methods=['POST'])
 def proof_form_post():
     text = request.form['text']
-    parser(text)
+    return str(parser(text))
 
 if __name__== "__main__":
     app.run()
