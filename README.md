@@ -1,10 +1,18 @@
 # PrairieProof
 
-An automated proof grading system using a natural language web interface
+Input a proof in plain English in the web interface, and recieve immediate feedback on whether it is right or not, and how to fix it!
   * Provides convenient interface for authoring proofs, including buttons for special characters
+  * Recieve feedback on where in the proof you're wrong if there are any mistakes
+  * Useful for: 
+    - Checking whether your homework is correct
+    - Automatically grade tests/exams without human intervention
+    - Writing informal proofs while still checking for correctness
+  
+  
+# Technical Details
   * Grades set theory based proofs
   * Automatically identifies variables, sets, claims and assumptions in a proof
-  * Transpiles natural language to Lean
+  * Transpiles using NLP techniques to Lean, a programming language meant for proof checking using NLP techniques 
 
 ## USAGE
   * Simply type your formatted proof into the box and hit submit to get your proof checked!
