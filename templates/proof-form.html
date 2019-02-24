@@ -1,0 +1,33 @@
+<html>
+<head>
+	<title>Welcome to my realm</title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script src="{{ url_for('static', filename='jquery-linedtextarea.js')}}"></script>
+	<link href="{{ url_for('static', filename='jquery-linedtextarea.css')}}" type="text/css" rel="stylesheet" />
+</head>
+<body>
+
+<h1>Enter your proof below</h1>
+<form method="POST">
+	<input type="button" value="∧" onclick="addText('\u2227')" />
+	<input type="button" value="∨" onclick="addText('\u2228')" />
+	<input type="button" value="⇒" onclick="addText('\u21D2')" />
+	<input type="button" value="⇔" onclick="addText('\u21D4')" />
+	<input type="button" value="∀" onclick="addText('\u2200')" />
+	<input type="button" value="∃" onclick="addText('\u2203')" />
+	<input type="button" value="∄" onclick="addText('\u2204')" />
+	<input type="button" value="∴" onclick="addText('\u2234')" />
+	<input type="button" value="∵" onclick="addText('\u2235')" />
+	<textarea id="text" itemprop="description" name="text" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" style="width: 100%; height: 90%" wrap="off"></textarea>
+    <input type="submit">
+</form>
+<script>
+	function addText(symbol) {
+		document.getElementById('text').value+= symbol;
+	}
+	$(function() {
+		$("#text").linedtextarea();
+	});
+</script>
+</body>
+</html>
