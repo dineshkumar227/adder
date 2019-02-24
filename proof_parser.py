@@ -1,7 +1,5 @@
 import nltk
-from nltk.tokenize import sent_tokenize, word_tokenize
-from nltk.corpus import stopwords
-
+from nltk.tokenize import word_tokenize
 
 def get_assumptions(statement):
 	return " ".join(statement.split(" ")[1:])
