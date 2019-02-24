@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template
+from proof_parser import *
 
 app = Flask(__name__)
 
@@ -9,7 +10,7 @@ def proof_form():
 @app.route('/', methods=['POST'])
 def proof_form_post():
     text = request.form['text']
-    return "succ the zucc" 
+    return str(parser(text))
 
 if __name__== "__main__":
     app.run()
