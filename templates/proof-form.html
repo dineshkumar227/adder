@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>Welcome to my realm</title>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="{{ url_for('static', filename='jquery-linedtextarea.js')}}"></script>
 	<link href="{{ url_for('static', filename='jquery-linedtextarea.css')}}" type="text/css" rel="stylesheet" />
 </head>
@@ -9,33 +9,50 @@
 
 <h1>Enter your proof below</h1>
 <form method="POST">
-	<input type="button" value="∧" onclick="addText('\u2227')" />
-	<input type="button" value="∨" onclick="addText('\u2228')" />
-	<input type="button" value="⇒" onclick="addText('\u21D2')" />
-	<input type="button" value="⇔" onclick="addText('\u21D4')" />
-	<input type="button" value="∀" onclick="addText('\u2200')" />
-	<input type="button" value="∃" onclick="addText('\u2203')" />
-	<input type="button" value="∄" onclick="addText('\u2204')" />
-	<input type="button" value="∴" onclick="addText('\u2234')" />
-	<input type="button" value="∵" onclick="addText('\u2235')" />
-	<input type="button" value="⋃" onclick="addText('\u22C3')" />
-	<input type="button" value="⋂" onclick="addText('\u22C2')" />
-	<input type="button" value="∈" onclick="addText('\u2208')" />
-	<input type="button" value="∉" onclick="addText('\u2209')" />
-	<input type="button" value="⊆" onclick="addText('\u2286')" />
-	<input type="button" value="⊈" onclick="addText('\u2288')" />
-	<input type="button" value="⊂" onclick="addText('\u2282')" />
-	<input type="button" value="⊄" onclick="addText('\u2284')" />
+	<input type="button" value="∧" />
+	<input type="button" value="∨" />
+	<input type="button" value="⇒" />
+	<input type="button" value="⇔" />
+	<input type="button" value="∀" />
+	<input type="button" value="∃" />
+	<input type="button" value="∄" />
+	<input type="button" value="∴" />
+	<input type="button" value="∵" />
+	<input type="button" value="⋃" />
+	<input type="button" value="⋂" />
+	<input type="button" value="∈" />
+	<input type="button" value="∉" />
+	<input type="button" value="⊆" />
+	<input type="button" value="⊈" />
+	<input type="button" value="⊂" />
+	<input type="button" value="⊄" />
 	<textarea id="text" itemprop="description" name="text" autocorrect="off" autocomplete="off" autocapitalize="off" spellcheck="false" style="width: 100%; height: 90%" wrap="off"></textarea>
     <input type="submit">
 </form>
 <script>
-	function addText(symbol) {
-		document.getElementById('text').value+= symbol;
-	}
-	$(function() {
+$(function() {
 		$("#text").linedtextarea();
 	});
+
+$( 'input[type=button]' ).on('click', function(){
+   	$("#text").insertIntoTextArea($(this).val());
+});
+
+$.fn.insertIntoTextArea = function(textToInsert) {
+    return this.each(function () {
+        var txt = $(this);
+        var cursorPosStart = txt.prop('selectionStart');
+        var cursorPosEnd = txt.prop('selectionEnd');
+        var v = txt.val();
+        var textBefore = v.substring(0,  cursorPosStart);
+        var textAfter  = v.substring(cursorPosEnd, v.length);
+        txt.val(textBefore + textToInsert + textAfter);
+        txt.prop('selectionStart', cursorPosStart);
+        txt.prop('selectionEnd', cursorPosStart + textToInsert.length);
+        txt.focus();
+    });
+}
+
 </script>
 </body>
 </html>
