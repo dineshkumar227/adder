@@ -4,4 +4,6 @@ email: dkr2@illinois.edu
 *  NLP Parser
 
 # Chinmaya Mahesh
-    email: 
+email: cmahesh2@illinois.edu
+* Transpiler
+* Converting intermediate code to valid lean code
