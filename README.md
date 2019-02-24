@@ -26,4 +26,4 @@ An automated proof grading system using a natural language web interface
 ## [Contributor Guide](CONTRIBUTING.md)
 
 ## License 
-Licensed under AGPL v3.0. For more details, visit [LICENSE.md](LICENSE.md)
+Licensed under AGPL v3.0. For more details, visit [LICENSE](LICENSE)
