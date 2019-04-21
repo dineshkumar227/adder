@@ -18,7 +18,8 @@ def proof_form_post():
 	for i in parsed_code:
 		code_file.write(i + "\n")
 	code_file.close()
-	messages = getErrors("/tmp/code_file.len")
+	messages = getErrors("/tmp/code_file.lean")
+	print(messages)
 
 	return render_template('output.html', messages=messages)
 

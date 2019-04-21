@@ -16,8 +16,3 @@ def getErrors(sourcefile):
 		ret.append("Errors were found. Failure at point: ")
 		ret.append(p[len(p)-3])
 	return ret
-
-sourcefile = "actual_transpile.lean"
-errors = getErrors(sourcefile)
-for i in errors:
-	print(i)
