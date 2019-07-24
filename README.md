@@ -1,4 +1,4 @@
-# PrairieProof
+# Adder
 
 Input a proof in plain English in the web interface, and recieve immediate feedback on whether it is right or not, and how to fix it!
   * Provides convenient interface for authoring proofs, including buttons for special characters
